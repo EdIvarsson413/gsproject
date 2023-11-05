@@ -1,0 +1,29 @@
+1.  Dentro del proyecto creas el entorno virtual con el comando 
+        python -m venv .venv
+
+2. Luego usas pip install -r requerimientos.txt para que no tengas que instalar tu mismo
+    las dependencias
+
+3. Al proyecto le va a faltar el sqlite, para ello primero:
+    * ejecutas python manage.py runserver (opcional por si quieres ver que todo esté bien)
+    a) usas python manage.py makemigrations
+    b) luego usas python manage.py migrate
+    
+   Con esto te deberia de crear todas las tablas sql y por si acaso deben de aplicarse las 
+   migraciones de : admin (esto es de Django), contacto, metodos y cuentas
+
+   Tablas sql importantes:
+    *cuentas_usuariopers
+    *contacto_metodo
+    *metodos_metodo
+    *metodos_comentario
+
+4. El uso de la pagina es por usuario y administrador, te registras en la pagina de forma normal
+   para ser usuario normal. Para registrar a un admin usas el comando python manage.py createsuperuser, das algunos datos
+   que sean faciles de recordar y ahora ya podrias entrar a la url localhost:8000/admin
+
+5. Para la creación de los metodos antes debiste ser admin, si ya lo eres aqui están el txt de los metodos y las imagenes que 
+   por ahora he llegado a usar
+
+   link: 
+    https://mega.nz/file/FV5Ezb4b#kOFYlRa9I_KJgu0wYyK9UiRHyiBOJIlyBI3St3xCx90

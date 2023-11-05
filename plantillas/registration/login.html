@@ -1,0 +1,18 @@
+<!-- plantillas/registration/login.html -->
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block titulo %}Log In{% endblock titulo %}
+
+{% block contenido %}
+<div class="w-50 mx-auto card p-3 mt-5">
+    <h2>Log In</h2>
+    <form method="post" class="my-3" autocomplete="off">{% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-success w-100">Log In</button>
+    </form>
+    <p>
+        <a href="{% url 'password_reset' %}">Olvide mi contraseña</a>
+    </p>
+</div>
+{% endblock contenido %}
