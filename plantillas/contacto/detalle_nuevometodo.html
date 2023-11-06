@@ -7,7 +7,7 @@
 {% block contenido %}
     <div class="d-flex gap-3 mx-auto my-3" style="width: 55%;">
         <a href="{% url 'descarga' metodo.pk %}" download="">Descargar datos</a>
-        <a href="#">Eliminar método</a>
+        <a href="{% url 'eliminar' metodo.pk %}">Eliminar método</a>
     </div>
 
     <article class="card my-3 mx-auto py-2" style="width: 55%;">

@@ -1,4 +1,6 @@
 from django.views.generic import CreateView, ListView, DetailView
+from django.views.generic.edit import DeleteView
+from django.urls import reverse_lazy
 from .models import Metodo
 from django.shortcuts import redirect
 
@@ -52,6 +54,18 @@ class VistaDetalleMetodoNuevo(DetailView):
 
     model = Metodo
     template_name = 'contacto/detalle_nuevometodo.html'
+
+class VistaEliminarMetodo(DeleteView):
+    # usuario en la vista?
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            return redirect('inicio')
+        
+        return super().dispatch(request, *args, **kwargs)
+    
+    model = Metodo
+    template_name = 'contacto/eliminar_metodo.html'
+    success_url = reverse_lazy('metodos_nuevos')
 
 class DescargarDatos(View):
     def get(self, request, pk):
