@@ -1,0 +1,26 @@
+{% extends "_base.html" %}
+
+{% block titulo %} Métodos reportados {% endblock titulo %}
+
+{% block contenido %}
+    <div class="w-100 mt-3">
+        {% if metodo_list %}
+            <div class="row justify-content-around">
+                {% for metodo in metodo_list %}
+                <article class="card px-3 py-2 col-md-4 col-lg-3 m-2">
+                    <section>
+                        <a class="text-black text-decoration-none" href="{% url 'detalle_nuevo' metodo.pk %}">
+                            {{ metodo.titulo }}
+                        </a>
+                        <p>
+                            por: <b>{{ metodo.autor }}</b>
+                        </p>
+                    </section>
+                </article>
+            {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center fs-1 mt-5">No hay propuestas de métodos</p>
+        {% endif %}
+    </div>
+{% endblock contenido %}

@@ -1,0 +1,31 @@
+{% load crispy_forms_tags %}
+
+<!-- Si hay comentarios hechos -->
+{% if metodo.comentario_set.all %}
+    <div style="height: 200px;" class="card-footer">
+        <section>
+            <h2 style="font-family: 'Press Start 2P', sans-serif; font-size: 1rem;">
+                Comentarios
+            </h2>
+        </section>
+
+        <section>
+            {% for comentario in metodo.comentario_set.all %}
+                <p>
+                    <b>{{ comentario.autor }}</b> &middot; {{ comentario }}
+                </p>
+            {% endfor %}
+        </section>
+    </div>
+{% endif %}
+
+<hr>
+
+<!-- Para comentar debes estar registrado en el sitio -->
+{% if user.is_authenticated %}
+    <form method="post" class="container" autocomplete="off">{% csrf_token %}
+        {{ form|crispy }}
+
+        <input type="submit" value="Comentar" class="btn btn-outline-success w-100">
+    </form>
+{% endif %}

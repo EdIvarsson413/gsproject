@@ -1,0 +1,120 @@
+<!-- plantillas/_filtro.html
+    Esta plantilla no hereda sino se va a incluir en _base.html
+-->
+<article class="d-flex gap-5">
+    <section>
+        <a href="{% url 'filtro_metodo' filtro='todos'%}" class="fs-4 align-self-center text-black text-decoration-none">Filtrar</a>
+    </section>
+
+    <!-- Por nombre -->
+    <section class="dropdown nav-item">
+        <!-- Boton -->
+        <a 
+            href="#"
+            class="link-dark text-decoration-none dropdown-toogle btn"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+        > Nombre </a>
+        <!-- Opciones -->
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='asc' %}" class="dropdown-item">Ascendente</a>
+            </li>
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='des' %}" class="dropdown-item">Descendente</a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Por elemento -->
+    <section class="dropdown nav-item">
+        <!-- Boton -->
+        <a 
+            href="#"
+            class="link-dark text-decoration-none dropdown-toogle btn"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+        > Elemento </a>
+        <!-- Opciones -->
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='Venus' %}" class="dropdown-item">Venus</a>
+            </li>
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='Marte' %}" class="dropdown-item">Marte</a>
+            </li>
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='Jupiter' %}" class="dropdown-item">Jupiter</a>
+            </li>
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='Mercurio' %}" class="dropdown-item">Mercurio</a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Por tipo de item -->
+    <section class="dropdown nav-item">
+        <!-- Boton -->
+        <a 
+            href="#"
+            class="link-dark text-decoration-none dropdown-toogle btn"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+        > Tipo de item </a>
+        <!-- Opciones -->
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='ataque' %}" class="dropdown-item">Ataque</a>
+            </li>
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='defensa' %}" class="dropdown-item">Defensa</a>
+            </li>
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='forjable' %}" class="dropdown-item">Forjable</a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Por Arma -->
+    <section class="dropdown nav-item">
+        <!-- Boton -->
+        <a 
+            href="#"
+            class="link-dark text-decoration-none dropdown-toogle btn"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+        > Arma </a>
+        <!-- Opciones -->
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='espada_larga' %}" class="dropdown-item">Espada Larga</a>
+            </li>
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='espada_corta' %}" class="dropdown-item">Espada corta</a>
+            </li>
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='baston' %}" class="dropdown-item">Baston</a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Por Juego -->
+    <section class="dropdown nav-item">
+        <!-- Boton -->
+        <a 
+            href="#"
+            class="link-dark text-decoration-none dropdown-toogle btn"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+        > Juego </a>
+        <!-- Opciones -->
+        <ul class="dropdown-menu">
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='golden_sun' %}" class="dropdown-item">Golden Sun I</a>
+            </li>
+            <li>
+                <a href="{% url 'filtro_metodo' filtro='golden_sun_2' %}" class="dropdown-item">Golden Sun II</a>
+            </li>
+        </ul>
+    </section>
+</article>

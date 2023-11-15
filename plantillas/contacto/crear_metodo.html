@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block titulo %} Reportar nuevo método {% endblock titulo %}
+
+{% block contenido %}
+    <article class="card my-5 px-5 py-2 mx-auto w-75">
+        <h1>¿Tienes otra forma de obtener alguno de estos items?</h1>
+        <h3>Reportalo :D</h3>
+        
+        <form method="post" autocomplete="off">{% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" value="Reportar nuevo metodo" class="btn btn-success w-100">
+        </form>
+        
+
+        <p>*: Campos obligatorios</p>
+        <p>Nota: No te preocupes por la imagen, nosotros la agregamos</p>
+    </article>
+{% endblock contenido %}

@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block titulo %} Inicio {% endblock titulo %}
+
+{% block contenido %}
+    <div class="row">
+        {% if metodo_list %}
+            {% for metodo in metodo_list %}
+                <div class="col-md-6 p-5">
+                    <article class="card">
+                        <!-- Titulo -->
+                        <h3 
+                            class="card-header link-dark text-center" 
+                            style="font-family: 'Press Start 2P', sans-serif;
+                                    font-size: 1rem;"
+                        >
+                            <a href="{% url 'detalle_metodo' metodo.pk %}"class="text-decoration-none text-black" >{{ metodo.titulo }}</a>
+                        </h3>
+
+                        <!-- Cuerpo -->
+                        <section class="card-body d-flex justify-content-between align-items-center">
+                            <p style="font-family: 'Press Start 2P', sans-serif; font-size: 0.8rem;"> {{ metodo.descripcion }} </p>
+                            <img 
+                                src="{{ metodo.imagen.url }}" 
+                                alt="{{ metodo.titulo }}" 
+                                class="img-thumbnail"
+                                style="width: 15%; background-color: #e4e4e4;"
+                            >
+                        </section>
+                    </article>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center fs-1 mt-5">No hay resultados</p>
+        {% endif %}
+    </div>
+{% endblock contenido %}
