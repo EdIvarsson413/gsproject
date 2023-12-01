@@ -1,9 +1,14 @@
 <!-- plantillas/_filtro.html
     Esta plantilla no hereda sino se va a incluir en _base.html
 -->
-<article class="d-flex gap-5">
+<article class="d-flex gap-3">
     <section>
-        <a href="{% url 'filtro_metodo' filtro='todos'%}" class="fs-4 align-self-center text-black text-decoration-none">Filtrar</a>
+        <a 
+            href="{% url 'filtro_metodo' filtro='todos'%}" 
+            class="fs-4 align-self-center link-dark text-decoration-none"
+        >
+            Filtrar
+        </a>
     </section>
 
     <!-- Por nombre -->
@@ -117,4 +122,29 @@
             </li>
         </ul>
     </section>
+
+    <!-- Filtros dinamicos -->
+    {% for filtro in links %}
+        <section class="dropdown nav-item">
+            <!-- Boton -->
+            <a 
+                href="#"
+                class="link-dark text-decoration-none dropdown-toogle btn"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+            > {{ filtro.nombre }} </a>
+
+            <!-- Opciones -->
+            <ul class="dropdown-menu">
+                {% for elemento in filtro.elementos %}
+                    <li>
+                        <a 
+                            href="{% url 'filtro_dinamico' variable=elemento.variable filtro=elemento.elemento_slug %}" 
+                            class="dropdown-item"
+                        >{{ elemento.elemento }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% endfor %}
 </article>

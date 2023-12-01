@@ -1,0 +1,34 @@
+body, label {
+    cursor: url('../ico/venus.gif'), pointer;
+}
+
+a:hover, select {
+    cursor: url('../ico/mercurio.gif'), pointer;
+}
+
+input, textarea, option {
+    cursor: url('../ico/jupiter.gif'), pointer; 
+}
+
+input[type="submit"]:hover, button {
+    cursor: url('../ico/marte.gif'), pointer; 
+}
+
+.fuente {
+    font-family: 'Press Start 2P', sans-serif; 
+}
+
+.fuente-h2 {
+    font-family: 'Press Start 2P', sans-serif; 
+    font-size: 1rem;
+}
+
+.fuente-h3 {
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 1rem;
+}
+
+.fuente-p {
+    font-family: 'Press Start 2P', sans-serif; 
+    font-size: 0.8rem;
+}

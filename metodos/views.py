@@ -2,7 +2,7 @@ from django.views.generic import ListView, DetailView, FormView
 from django.views import View
 from django.urls import reverse_lazy, reverse
 from .models import Metodo
-from .filtros import aplicar_filtro
+from .filtros import aplicar_filtro, aplicar_filtros_dinamicos
 from .forms import FormularioComentario
 
 # Mixins
@@ -44,9 +44,6 @@ class ComentarioPost(SingleObjectMixin, FormView):
 
 # /<int:pk>
 class VistaDetalleMetodo(DetailView):
-    # model = Metodo
-    # template_name = 'metodos/detalle_metodo.html'
-    # object_name = 'metodo'
     def get(self, request, *args, **kwargs):
         view = ComentarioGet.as_view()
         return view( request, *args, **kwargs )
@@ -64,4 +61,22 @@ class VistaFiltroMetodos(ListView):
         queryset = Metodo.objects.all()
         filtro = self.kwargs['filtro']
         queryset = aplicar_filtro( queryset = queryset, filtro = filtro )
+        return queryset
+
+# /filtro-dinamico/<str:variable>/<str:filtro>/
+class VistaFiltrosDinamicos(ListView):
+    model = Metodo
+    template_name = 'metodos/inicio.html'
+    
+    def get_queryset(self):
+        queryset = Metodo.objects.all()
+
+        # Obtener slugs
+        variable = self.kwargs['variable']
+        filtro = self.kwargs['filtro']
+        queryset = aplicar_filtros_dinamicos( 
+            queryset = queryset,
+            variable = variable,
+            filtro = filtro)
+        
         return queryset

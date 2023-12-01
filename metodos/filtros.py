@@ -37,3 +37,15 @@ def aplicar_filtro(queryset, filtro):
         return queryset.filter(juego = 'golden_sun_2')
 
     return queryset.all()
+
+def aplicar_filtros_dinamicos(queryset, variable, filtro):
+    # Para ascendente y descendente
+    if variable == "nombre":
+        if filtro == "titulo":
+            return queryset.order_by('titulo')
+        else:
+            return queryset.order_by('-titulo')
+    
+    # Filtro con variables
+    filtro_dinamico = {f"{variable}__icontains": filtro}
+    return queryset.filter(**filtro_dinamico)

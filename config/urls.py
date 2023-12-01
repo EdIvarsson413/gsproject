@@ -21,12 +21,25 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', TemplateView.as_view( template_name = 'metodos/inicio.html' ), name = 'inicio'),
     path("cuentas/", include( 'cuentas.urls' )),
     path("cuentas/", include('django.contrib.auth.urls')),
     path("", include( 'metodos.urls' )),
-    path("", include( 'contacto.urls' ))
+    path("", include( 'contacto.urls' )),
+    path(
+            "acerca/", 
+            TemplateView.as_view(template_name = '_acerca.html'), 
+            name = 'acerca_de'
+        ),
+
+
+    # Urls de allauth y url para la plantilla personalizada del login
+    path('accounts/', include('allauth.urls')),
+    path(
+            'accounts/social/login/', 
+            TemplateView.as_view(template_name='accounts/socialaccount/login.html'), 
+            name='socialaccount_login'
+        ),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

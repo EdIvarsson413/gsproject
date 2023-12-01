@@ -1,0 +1,32 @@
+<!-- plantillas/_acerca.html -->
+{% extends "_base.html" %}
+
+{% block titulo %} Sobre el proyecto {% endblock titulo %}
+
+{% block contenido %}
+    <div class="card mt-3 p-5">
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="text-center">¿Qué es GsDjango?</h3>
+                <hr>
+                <p>
+                    Este es un sitio web donde se pueden ver cómo se obtienen los items que otorgan los métodos 
+                    RNG de los juegos de Golden Sun (1 y 2), mostrando los requisitos e instrucciones de obtención.
+                </p>
+                <p>
+                    Estos métodos vienen de paginas en inglés y es tarea de equipo de desarrollo traer todos los métodos
+                    en español para comodidad de los jugadores y esto es TOTALMENTE GRATIS.
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h3 class="text-center">¿Qué son los métodos GNA/RNG?</h3>
+                <hr>
+                <p>
+                    Los Randon Number Generator o los Generadores de Numeros Aleatorios són métodos presentes en los videojuegos
+                    de tipo RPG (como Pokemón). También se les llama Pseudo-Random Number Generator, ya que se tiene "control"
+                    de la aleatoriedad del videojuego para obtener beneficios como items de ataque, defensa, curación, etc.
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock contenido %}

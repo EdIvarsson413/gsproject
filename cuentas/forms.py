@@ -4,9 +4,9 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 class FormCreacionUsuario(UserCreationForm):
     class Meta(UserCreationForm):
         model = UsuarioPers
-        fields = ( 'username', 'email', 'edad' )
+        fields = ( 'username', 'email' )
 
 class FormCambiarUsuario(UserChangeForm):
     class Meta:
         model = UsuarioPers
-        fields = ( 'username', 'email', 'edad' )
+        fields = ( 'username', 'email' )

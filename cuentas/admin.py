@@ -11,11 +11,8 @@ class UsuarioAdmin(UserAdmin):
     list_display = [
         'email',
         'username',
-        'edad',
         'is_staff'
     ]
-    fieldsets = UserAdmin.fieldsets + ((None, { 'fields': ('edad',) }),)
-    add_fieldsets = UserAdmin.add_fieldsets + ((None, {'fields': ('edad'),}),)
 
 # Mostrar en el panel de Admin
 admin.site.register( UsuarioPers, UsuarioAdmin );

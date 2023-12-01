@@ -4,6 +4,12 @@
 {% block titulo %} Inicio {% endblock titulo %}
 
 {% block contenido %}
+    <!-- AQUI PONES EL BANNER
+        asi le pones al href -> href="{% static 'ico/banner.jpg' %}"
+        si banner es png se lo cambias
+    -->
+    <img src="{% static 'banner.png' %}" alt="imagen banner">
+
     <div class="row">
         {% if metodo_list %}
             {% for metodo in metodo_list %}
@@ -11,16 +17,17 @@
                     <article class="card">
                         <!-- Titulo -->
                         <h3 
-                            class="card-header link-dark text-center" 
-                            style="font-family: 'Press Start 2P', sans-serif;
-                                    font-size: 1rem;"
+                            class="card-header link-dark text-center fuente-h3"
                         >
-                            <a href="{% url 'detalle_metodo' metodo.pk %}"class="text-decoration-none text-black" >{{ metodo.titulo }}</a>
+                            <a 
+                                href="{% url 'detalle_metodo' metodo.pk %}"
+                                class="text-decoration-none text-black"
+                            > {{ metodo.titulo }}</a>
                         </h3>
 
                         <!-- Cuerpo -->
                         <section class="card-body d-flex justify-content-between align-items-center">
-                            <p style="font-family: 'Press Start 2P', sans-serif; font-size: 0.8rem;"> {{ metodo.descripcion }} </p>
+                            <p class="fuente-p"> {{ metodo.descripcion }} </p>
                             <img 
                                 src="{{ metodo.imagen.url }}" 
                                 alt="{{ metodo.titulo }}" 
@@ -32,7 +39,7 @@
                 </div>
             {% endfor %}
         {% else %}
-            <p class="text-center fs-1 mt-5">No hay resultados</p>
+            <p class="text-center fs-1 mt-5 fuente-p">No hay resultados</p>
         {% endif %}
     </div>
 {% endblock contenido %}

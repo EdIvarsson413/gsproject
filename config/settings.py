@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-dek0#%)kv_-8sg2$bbjq1ii9@vdis^t^1dw0&0#kkf3lo0wy9#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,14 +37,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # Locales
     'cuentas.apps.CuentasConfig',
     'metodos.apps.MetodosConfig',
     'contacto.apps.ContactoConfig',
+    'filtros.apps.FiltrosConfig',
 
     # Terceros
     'crispy_forms',
-    'crispy_bootstrap5'
+    'crispy_bootstrap5',
+
+    # all-auth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware'
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -61,7 +75,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ BASE_DIR / 'plantillas' ],
+        'DIRS': [ BASE_DIR / 'plantillas', BASE_DIR / 'plantillas' / 'accounts' ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +83,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'filtros.context_processors.links',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -82,8 +98,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
@@ -124,6 +146,8 @@ USE_TZ = True
 
 STATIC_URL = '/estaticos/'
 STATICFILES_DIRS = [BASE_DIR / 'estaticos']
+STATIC_ROOT = BASE_DIR / 'archivosestaticos'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
@@ -133,23 +157,77 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Variables propias
+#           Variables propias
 AUTH_USER_MODEL = 'cuentas.UsuarioPers'
 
-# # Redirecciones
+#   Redirecciones
 LOGIN_REDIRECT_URL = 'inicio'
 LOGOUT_REDIRECT_URL = 'inicio'
 LOGIN_URL = 'login' # Redireccion en vistas protegidas
 
-# CSS en Formularios (06/10)
+#   CSS en Formularios (06/10)
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
-# Mailtrap
+#   MAILTRAP - SMPT
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'sandbox.smtp.mailtrap.io'
 EMAIL_HOST_USER = '4cdc31922333ca'
 EMAIL_HOST_PASSWORD = 'ce2467bbcf9a6c'
 EMAIL_PORT = '2525'
 EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+EMAIL_USE_SSL = True
+
+#   LOGIN SOCIAL
+AUTHENTICATION_BACKENDS = (
+    # Necesario para logear por username en Django admin, sin importar allauth
+    'django.contrib.auth.backends.ModelBackend',
+    
+    # Metodo de autenticación especifico de allauth, como logear por email
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
+SOCIALACCOUNT_PROVIDERS = {
+    'github': {
+        'METHOD': 'oauth2',
+        'SCOPE': ['user:email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+        'FIELDS': [
+            'id',
+            'email',
+            'name',
+            'first_name',
+            'last_name',
+            'verified',
+            'locale',
+            'timezone',
+            'link',
+            'gender',
+            'updated_time',
+        ],
+        'EXCHANGE_TOKEN': True,
+        'VERIFIED_EMAIL': False,
+        'VERSION': 'v3',
+    }
+}
+
+#   CREDECIALES LOGIN SOCIAL
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http'
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': '525611576597-1si7vhkj01b8cjha1asfqhsucsu7ai92.apps.googleusercontent.com',
+            'secret': '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',
+            'key': ''
+        }
+    },
+    'github': {
+        'APP': {
+            'client_id': 'e87628966e5a0fdfabed',
+            'secret': '71f97530d5510006114d24539e2a389ff7d78af3',
+            'key': ''
+        }
+    },
+}
