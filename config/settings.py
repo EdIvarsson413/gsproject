@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'metodos.apps.MetodosConfig',
     'contacto.apps.ContactoConfig',
     'filtros.apps.FiltrosConfig',
+    'donar.apps.DonarConfig',
 
     # Terceros
     'crispy_forms',
@@ -176,7 +177,7 @@ EMAIL_HOST_USER = '4cdc31922333ca'
 EMAIL_HOST_PASSWORD = 'ce2467bbcf9a6c'
 EMAIL_PORT = '2525'
 EMAIL_USE_TLS = True
-EMAIL_USE_SSL = True
+EMAIL_USE_SSL = False
 
 #   LOGIN SOCIAL
 AUTHENTICATION_BACKENDS = (

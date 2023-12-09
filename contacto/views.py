@@ -54,6 +54,7 @@ class VistaDetalleMetodoNuevo(DetailView):
 
     model = Metodo
     template_name = 'contacto/detalle_nuevometodo.html'
+    permission_required = 'metodos.special_status'
 
 class VistaEliminarMetodo(DeleteView):
     # usuario en la vista?

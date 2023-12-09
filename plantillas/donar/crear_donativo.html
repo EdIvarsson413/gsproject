@@ -1,0 +1,20 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+
+{% block titulo %} ¿Quieres donar? {% endblock titulo %}
+
+{% block contenido %}
+    <article class="mx-auto w-50 card p-3 mt-5">
+        <h3 style="font-family: 'Press Start 2P', sans-serif;" class="text-center">¿Deseas donar?</h3>
+        <p>
+            Tu donativo puede ayudar al equipo a generar más métodos y buscar la forma de grabarlos para una guía más 
+            explicita.
+        </p>
+        <form method="post">{% csrf_token %}
+            {{ form|crispy }}
+
+            <button type="submit" class="w-100 btn btn-outline-success">Realizar Donativo</button>
+            <a href="{% url 'donadores' %}" class="w-100 btn btn-outline-warning mt-2">Ver Lista de Donadores</a>
+        </form>
+    </article>
+{% endblock contenido %}

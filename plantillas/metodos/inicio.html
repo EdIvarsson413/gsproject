@@ -4,10 +4,6 @@
 {% block titulo %} Inicio {% endblock titulo %}
 
 {% block contenido %}
-    <!-- AQUI PONES EL BANNER
-        asi le pones al href -> href="{% static 'ico/banner.jpg' %}"
-        si banner es png se lo cambias
-    -->
     <img src="{% static 'banner.png' %}" alt="imagen banner">
 
     <div class="row">
@@ -20,7 +16,7 @@
                             class="card-header link-dark text-center fuente-h3"
                         >
                             <a 
-                                href="{% url 'detalle_metodo' metodo.pk %}"
+                                href="{{ metodo.get_absolute_url }}"
                                 class="text-decoration-none text-black"
                             > {{ metodo.titulo }}</a>
                         </h3>

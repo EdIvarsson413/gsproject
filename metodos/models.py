@@ -1,12 +1,27 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
+import uuid
 
 # Create your models here.
 class Metodo(models.Model):
+    id = models.UUIDField( 
+        primary_key = True, 
+        default = uuid.uuid4, 
+        editable = False
+    ) 
     titulo = models.CharField( max_length = 255 )
     descripcion = models.CharField( max_length = 255)
-    elemento = models.CharField( max_length = 255, blank = True, null = True )
+    elemento = models.CharField( 
+        max_length = 255,
+        choices = [
+            ("Ninguno", "Ninguno"),
+            ("Venus", "Venus"),
+            ("Marte", "Marte"),
+            ("Jupiter", "Jupiter"),
+            ("Mercurio", "Mercurio")
+        ]
+    )
     requisitos = models.TextField()
     obtencion = models.TextField()
     imagen = models.ImageField( upload_to = 'items/', blank = True, null = True )
@@ -60,4 +75,4 @@ class Comentario(models.Model):
         return self.comentario
     
     def get_absolute_url(self):
-        return reverse("inicio")
+        return reverse( "detalle_nuevo", args = [ str(self.id) ] )

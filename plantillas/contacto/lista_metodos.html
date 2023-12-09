@@ -5,11 +5,11 @@
 {% block contenido %}
     <div class="mt-3">
         {% if metodo_list %}
-            <div class="row justify-content-around">
+            <div class="row justify-content-around fuente">
                 {% for metodo in metodo_list %}
                 <article class="card px-3 py-2 col-md-3 col-lg-4 m-2">
                     <section class="d-flex justify-content-between">
-                        <a class="text-black text-decoration-none" href="{% url 'detalle_nuevo' metodo.pk %}">
+                        <a class="text-black text-decoration-none" href="{{ metodo.get_absolute_url }}">
                             {{ metodo.titulo }}
                         </a>
                         <p>
@@ -20,7 +20,8 @@
             {% endfor %}
             </div>
         {% else %}
-            <p class="text-center fs-1 mt-5">No hay propuestas de métodos</p>
+            <p class="text-center fs-1 mt-5"
+                style="font-family: 'Press Start 2P', sans-serif;" >No hay propuestas de métodos</p>
         {% endif %}
     </div>
 {% endblock contenido %}

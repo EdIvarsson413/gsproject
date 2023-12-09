@@ -25,6 +25,7 @@ urlpatterns = [
     path("cuentas/", include('django.contrib.auth.urls')),
     path("", include( 'metodos.urls' )),
     path("", include( 'contacto.urls' )),
+    path("", include( 'donar.urls' )),
     path(
             "acerca/", 
             TemplateView.as_view(template_name = '_acerca.html'), 
@@ -41,5 +42,5 @@ urlpatterns = [
         ),
 ]
 
-# if settings.DEBUG:
-#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

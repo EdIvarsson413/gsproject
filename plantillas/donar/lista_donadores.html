@@ -1,0 +1,38 @@
+{% extends "_base.html" %}
+
+{% block titulo %} Donadores {% endblock titulo %}
+
+{% block contenido %}
+    <article>
+        <section class="card p-5 mt-5">
+            <h2 
+                style="font-family: 'Press Start 2P', sans-serif; 
+                    text-align: center; margin-bottom: 1rem;"
+                class="card-header"
+            > Nuestros Donadores
+            </h2>
+            
+            <table class="table card-body">
+                <thead>
+                    <tr class="text-center fw-bold">
+                        <td scope="col">Usuario donador</td>
+                        <td scope="col">Cantidad donada</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for donativo in donativo_list %}
+                        <tr class="text-center">
+                            <td scope="row">{{ donativo.donador }}</td>
+                            <td>{{ donativo.cantidad }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            
+            <div class="card-footer">
+                <a href="{% url 'inicio' %}" class="btn btn-success">Volver al inicio</a>
+            </div>
+        </section>
+
+    </article>
+{% endblock contenido %}

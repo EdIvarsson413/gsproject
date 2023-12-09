@@ -57,7 +57,7 @@
         </ul>
     </section>
 
-    <!-- Por tipo de item -->
+    {% comment %} <!-- Por tipo de item -->
     <section class="dropdown nav-item">
         <!-- Boton -->
         <a 
@@ -121,7 +121,7 @@
                 <a href="{% url 'filtro_metodo' filtro='golden_sun_2' %}" class="dropdown-item">Golden Sun II</a>
             </li>
         </ul>
-    </section>
+    </section> {% endcomment %}
 
     <!-- Filtros dinamicos -->
     {% for filtro in links %}
