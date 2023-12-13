@@ -28,7 +28,8 @@ class VistaCrearMetodo(CreateView):
                 "requisitos", "instrucciones",
                 "tipo_item", "tipo_arma", "juego"
             )
-
+    success_url = reverse_lazy('inicio')
+    
     def form_valid(self, form):
         form.instance.autor = self.request.user
         return super().form_valid(form)
@@ -54,7 +55,6 @@ class VistaDetalleMetodoNuevo(DetailView):
 
     model = Metodo
     template_name = 'contacto/detalle_nuevometodo.html'
-    permission_required = 'metodos.special_status'
 
 class VistaEliminarMetodo(DeleteView):
     # usuario en la vista?

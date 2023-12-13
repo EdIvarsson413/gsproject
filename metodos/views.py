@@ -40,7 +40,7 @@ class ComentarioPost(SingleObjectMixin, FormView):
     
     def get_success_url(self):
         metodo = self.get_object()
-        return reverse( "detalle_metodo", args = [ str(metodo.pk) ]  )
+        return reverse( 'detalle_metodo', kwargs = {'pk': metodo.pk} )
 
 # /<int:pk>
 class VistaDetalleMetodo(DetailView):
