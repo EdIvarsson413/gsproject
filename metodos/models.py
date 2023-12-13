@@ -75,4 +75,4 @@ class Comentario(models.Model):
         return self.comentario
     
     def get_absolute_url(self):
-        return reverse( "detalle_nuevo", args = [ str(self.id) ] )
+        return reverse( "detalle_metodo", args = [ str(self.id) ] )
